@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AlertController, LoadingController, Platform, ToastController } from '@ionic/angular';
-import { ImplUserGroupsDataBroker, UserGroup, UserGroupsDataBrokerConfig,
+import { ImplUserGroupsDataBroker, User, UserGroup, UserGroupsDataBrokerConfig,
   UserGroupsDataBrokerEvent } from 'ionic-ng-user-groups-ui';
 
 import { CRUD } from 'app-base-lib';
@@ -19,7 +19,7 @@ const PER_PAGE = 5;
   providedIn: 'root'
 })
 export class LocalUserGroupsDataBrokerService extends ImplUserGroupsDataBroker {
-
+ 
   userGroupConfig: UserGroupsDataBrokerConfig;
   constructor( platform: Platform, alertCtrl: AlertController, http: HttpClient ,
      toastCtrl: ToastController,loadingCtrl: LoadingController ) {
@@ -28,9 +28,16 @@ export class LocalUserGroupsDataBrokerService extends ImplUserGroupsDataBroker {
     this.setConfig(config);
     this.setStorageData();
   }
+  async onAvatarClick(user: User): Promise<void> {
+    alert(`App ALert : user( ${user.name} ) avatar was clicked`);
+  }
+
+  async onAddUserClick(): Promise<void> {
+    alert(`App ALert : add user button was clicked`);
+  }
 
   async setStorageData(){
-    await this.saveStore([
+    /*await this.saveStore([
       {
           id: '358ydlhslh284hsksl84258',
           title: 'Mili Study Group',
@@ -691,7 +698,7 @@ export class LocalUserGroupsDataBrokerService extends ImplUserGroupsDataBroker {
               },
           ]
       },
-  ]);
+  ]);*/
   }
   onExplore(userGroup: UserGroup): any {
     // throw new Error('Method not implemented.');
